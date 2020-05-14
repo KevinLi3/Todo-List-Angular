@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>Todo List</title>
+
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .done{text-decoration: line-through;color:#ccc;}
+        .jumbotron{
+            background-color:#2E2D88;
+            color:white;
+        }
+    </style>
+    <script src="app\lib\angular.min.js"></script>
+    <script src="app\app.js"></script>
+</head>
+<body style="background-color:#3CB2EE">
+<div class="container-xl">
+    <div ng-controller="todoController">
+            <div class="page-header">
+                <h1>To-do List</h1>
+            </div>
+            <div class="jumbotron">
+                <p>Here is a handy to-do list, for all your organizational needs.
+                Simply type into the field below, and click "Add to list". When you are
+                finished the task, select them and click "Clear Completed"</p>
+            </div>
+        <form name="frm" ng-submit="add()">
+            <input type="text" name="newTodo" ng-model="newTodo" required/>
+            <button class="btn btn-primary btn-sm" ng-disabled="frm.$invalid">Add to list</button>
+        </form>
+        <button class="btn btn-warning btn-lg" ng-click="clear()">Clear Completed</button>
+        <ul>
+            <li ng-repeat="todo in todos">
+                <input class="form-check-input"type="checkbox" ng-model="todo.done" />
+                <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
